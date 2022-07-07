@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Slider rate_slider;
-    bool oyunsonu_Geldimi;
+    
     void Start()
     {
         PlayerPrefs.SetFloat("reward", 0f);
         rate_slider.value = PlayerPrefs.GetFloat("reward"); 
-        bool oyunsonu_Geldimi = false;
+        
 
     }
 
@@ -45,10 +45,7 @@ public class GameManager : MonoBehaviour
         rate_slider.value = PlayerPrefs.GetFloat("reward");
     }
 
-    public void oyunSonu_geldimi()
-    {
-        oyunsonu_Geldimi = true;
-    }
+  
     void Update()
     {
        

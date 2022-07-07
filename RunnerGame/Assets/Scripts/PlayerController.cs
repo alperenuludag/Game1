@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Space))
+           /* if (Input.GetKeyDown(KeyCode.Space))
             {
                 jump = true;
             }
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isSlide", slide);
 
             }
+           */
         }
 
     }
