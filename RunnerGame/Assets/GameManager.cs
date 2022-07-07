@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [Header("UI OBJELER")]
     public Slider rate_slider;
+    public GameObject oyundurdurma_paneli;
 
     [Header("GENEL LEVEL AYARLARI")]
     public float istenilen_rate_düzeyi;
@@ -53,7 +55,25 @@ public class GameManager : MonoBehaviour
         rate_slider.value = PlayerPrefs.GetFloat("reward");
     }
 
-  
+  public void oyunudurdur(){
+        oyundurdurma_paneli.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void oyundan_cikiliyormu(string key)
+    { 
+        if(key == "evet")
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            oyundurdurma_paneli.SetActive(false);
+            Time.timeScale = 1;
+        }
+
+
+    }
+
     void Update()
     {
        

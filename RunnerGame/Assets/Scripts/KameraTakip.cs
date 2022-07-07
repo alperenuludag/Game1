@@ -7,16 +7,16 @@ using UnityEngine;
 public class KameraTakip : MonoBehaviour
 {
 
-    public Transform topunkonumu;
+    public Transform karakterkonum;
     Vector3 fark;
 
     void Start()
     {
-        fark = transform.position - topunkonumu.position;
+        fark = transform.position - karakterkonum.position;
     }
 
     void Update()
     {
-        transform.position = topunkonumu.position + fark;
+        transform.position = karakterkonum.position + fark;
     }
 }
