@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool jump = false;
-    public bool slide = false;
+    
     bool oyunsonu_Geldimi;
     public GameManager gamemanager;
 
@@ -97,7 +96,17 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+    public void kazandikmi_kaybettikmi()
+    {
+        if(PlayerPrefs.GetFloat("reward") > gamemanager.istenilen_rate_düzeyi)
+        {
+            Debug.Log("kazandik");
+        }
+        else
+        {
+            Debug.Log("kaybettik");
+        }
+    }
 
     
 
@@ -126,6 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("oyunsonu", true);// eklenecek
             oyunsonu_Geldimi = true;
+            kazandikmi_kaybettikmi();
         }
 
 

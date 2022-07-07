@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI OBJELER")]
     public Slider rate_slider;
+
+    [Header("GENEL LEVEL AYARLARI")]
+    public float istenilen_rate_düzeyi;
     
     void Start()
     {
@@ -20,10 +24,14 @@ public class GameManager : MonoBehaviour
         if(PlayerPrefs.GetFloat("reward") + odul_degeri> 1)
         {
             PlayerPrefs.SetFloat("reward", 1);
+            
         }
         else
         {
             PlayerPrefs.SetFloat("reward", PlayerPrefs.GetFloat("reward") + odul_degeri);
+           
+            
+           
         }
       
         //Debug.Log(PlayerPrefs.GetFloat("reward"));
