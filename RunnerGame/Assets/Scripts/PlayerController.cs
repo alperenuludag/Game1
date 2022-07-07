@@ -13,24 +13,39 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-
+    private void FixedUpdate()
+    {
+        transform.Translate(Vector3.forward * 8f * Time.deltaTime);
+    }
     void Update()
     {
-        transform.Translate(0, 0, 0.01f);
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if (Input.GetAxis("Mouse X") < 0)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y,
+                    transform.position.z), .3f);
+            }
+            if (Input.GetAxis("Mouse X") > 0)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y,
+                    transform.position.z), .3f);
+            }
+        }
 
 
-
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;    
         }
-        else
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             jump = false;
         }
 
-       
-        if (Input.GetKey(KeyCode.DownArrow))
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             slide = true;
         }
@@ -40,10 +55,18 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (jump == true)
+       if (jump == true)
         {
-            anim.SetBool("isJump", jump);
-            transform.Translate(0, 0, 0.01f);
+            
+            if(anim.GetBool("isJump") == false)
+            {
+                anim.SetBool("isJump", jump);
+                //transform.Translate(Vector3.up * 25f * Time.deltaTime);
+
+            }
+                
+            
+
         }
         else if(jump == false)
         {
@@ -55,8 +78,11 @@ public class PlayerController : MonoBehaviour
 
         if (slide == true)
         {
-            anim.SetBool("isSlide", slide);
-            transform.Translate(0, 0, 0.01f);
+            if (anim.GetBool("isSlide") == false)
+            {
+                anim.SetBool("isSlide", slide);
+                transform.Translate(Vector3.forward * 8f * Time.deltaTime);
+            }
         }
         else if (slide == false)
         {
@@ -74,9 +100,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PlayerTrigger")
+        if(other.gameObject.tag == "engel")
         {
-            Destroy(trigger.gameObject);
+            Debug.Log("carpti");
         }
 
         if (other.gameObject.tag == "Coin")
